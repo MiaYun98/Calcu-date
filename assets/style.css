@@ -10,13 +10,14 @@ body {
 }
 
 form {
-    margin-top: 10%;
+    margin-top: 5%;
 }
 
 input {
     margin: 1%;
     box-sizing: border-box;
     font-size: 40px;
+
 }
 
 .front-page {
@@ -66,6 +67,13 @@ h4 {
   right: 0px;
 }
 
-    .italic {
-      font-style: italic;
-    }
+.newfont {
+  font-family: 'Great Vibes', cursive; 
+
+}
+h1 {
+  font-size: 125px;
+}
+h4 {
+  font-size: 50px; 
+}
