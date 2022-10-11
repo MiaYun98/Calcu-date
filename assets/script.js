@@ -41,5 +41,36 @@ console.log("hello")
 // 	.then(response => response.json())
 // 	.then(response => console.log(response))
 // 	.catch(err => console.error(err));
+var submitBtn = $("#search-form"); 
+var yourNameEl = document.querySelector(".form-input-your");
+var crushNameEl = document.querySelector(".form-input-crush");
 
-var submitBtn = $()
+function gettingInput(event) {
+    event.preventDefault();
+    var yourName = yourNameEl.value.trim();
+    var crushName = crushNameEl.value.trim();
+    if (!yourName || !crushName) {
+        alert("you should write something!")
+        return;
+    }
+
+    getCalculate(yourName, crushName)
+    console.log('click');
+}
+
+function getCalculate(yourName, crushName) {
+    const options = {
+        method: 'GET',
+        headers: {
+            'X-RapidAPI-Key': '8ffca2429dmsh13d60be90c10c46p18d30bjsn600828036fb6',
+            'X-RapidAPI-Host': 'love-calculator.p.rapidapi.com'
+        }
+    };
+
+    fetch('https://love-calculator.p.rapidapi.com/getPercentage?sname=' + yourName + "&fname=" + crushName , options)
+        .then(response => response.json())
+        .then(response => console.log(response))
+        .catch(err => console.error(err));  
+}
+
+submitBtn.on('submit', gettingInput);
