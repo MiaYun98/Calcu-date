@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>calcudate</title>
     <!-- font ? -->
-
+    <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
     <!-- css style sheet -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link rel="stylesheet" href="./assets/style.css">
@@ -18,12 +18,10 @@
           <h1>Calcudate</h1>
           <h4>sub</h4>
         </header>
-        <form action="submit">
-            <input type="your-name" placeholder="Your Name">
-            <br>
-            <input type="crush-name" placeholder="Crush-name">
-            <br>
-            <button id = "button" class = "btn-floating btn-large waves-effect waves-light red pulse">❤️</button>
+        <form id="search-form">
+          <input type="text" class="form-input-your" placeholder = "Your Name">
+          <input type="text" class="form-input-crush" placeholder = "Crush-name">
+          <button type="submit" class="btn-floating btn-large waves-effect waves-light red pulse" id = "button">❤️</button>
         </form>
       </section>
       <!-- <section class = "result-page">
@@ -41,7 +39,6 @@
       </section> -->
 
     <!-- Jquery -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="./assets/script.js">
     </script>

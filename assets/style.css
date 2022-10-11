@@ -6,16 +6,19 @@
 
 body {
     margin: 2.5%;
+    font-family: 'Great Vibes', cursive;
 }
 
-form {
-    margin-top: 10%;
-}
+
 
 input {
     margin: 1%;
     box-sizing: border-box;
     font-size: 40px;
+}
+
+button {
+    margin-top: 40px;
 }
 
 .front-page {
@@ -24,4 +27,10 @@ input {
 
 .hidden {
     display: none;
+}
+
+#search-form {
+    padding-top: 10%;
+    width: 30%;
+    margin: auto;
 }
