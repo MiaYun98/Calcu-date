@@ -2,11 +2,13 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+    font-family: 'Great Vibes', cursive;
 }
 
 body {
     margin: 2.5%;
     background-color: rgb(240, 183, 217);
+    
 }
 
 input {
@@ -35,10 +37,16 @@ h1 {
     color: rgb(233, 35, 35);
     font-size: 125px;
 }
+h2 {
+    color: rgb(233, 35, 35);
+}
 
 h4 {
     color: rgb(233, 35, 35);
     font-size: 50px; 
+}
+h3 {
+    color: rgb(233, 35, 35);
 }
 
 .heart-shape{
@@ -97,3 +105,4 @@ h4 {
     width: 30%;
     margin: auto;
 }
+
