@@ -105,4 +105,15 @@ h3 {
     width: 30%;
     margin: auto;
 }
+img {
+
+height: 500px;
+display: flex;
+float: left;
+width: 33.33%;
+padding: 5px;
+
+
+}
+
 

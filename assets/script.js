@@ -26,7 +26,7 @@ var frontPage = document.querySelector(".front-page");
 var resultPage = document.querySelector(".result-page")
 var contentEl = document.querySelector("#content")
 var contentListEl = document.querySelector("#contentList")
-var resultNum = "40";
+var resultNum = "";
 var recommendGenre = "";
 
 // getting the input value of the text area
@@ -145,8 +145,8 @@ function contentMovie(data) {
 }
 
 
-frontPage.classList.add("hidden");
-// resultPage.classList.add("hidden");
+//frontPage.classList.add("hidden");
+resultPage.classList.add("hidden");
 submitBtn.on('submit', gettingInput);
 reloadBtn.on('click', function () {
     location.reload();
