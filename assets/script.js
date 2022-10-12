@@ -105,8 +105,8 @@ function gettingMovie() {
         .catch(err => console.error(err));
 }
 
-frontPage.classList.add("hidden");
-// resultPage.classList.add("hidden");
+// frontPage.classList.add("hidden");
+resultPage.classList.add("hidden");
 submitBtn.on('submit', gettingInput);
 reloadBtn.on('click', function () {
     location.reload();
