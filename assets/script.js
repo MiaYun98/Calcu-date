@@ -24,7 +24,9 @@ var yourNameEl = document.querySelector(".form-input-your");
 var crushNameEl = document.querySelector(".form-input-crush");
 var frontPage = document.querySelector(".front-page");
 var resultPage = document.querySelector(".result-page")
-var resultNum = "";
+var contentEl = document.querySelector("#content")
+var contentListEl = document.querySelector("#contentList")
+var resultNum = "40";
 var recommendGenre = "";
 
 // getting the input value of the text area
@@ -75,8 +77,7 @@ function printingresult(data) {
     percentageEl.textContent = (data.percentage + "%");
     resultnum = data.percentage;
     var resultSenEl = document.querySelector(".result-sentence");
-    //its not working
-    resultSenEl.textContent = ("Result:" + data.result);
+    resultSenEl.textContent = ("Result: " + data.result);
 }
 
 function gettingRecommendation(event) {
@@ -129,12 +130,23 @@ function gettingMovie() {
 }
 
 function contentMovie(data) {
-    console.log(data)
+    console.log(data);
+    for (var i = 0; i < data.results.length; i++ ) {
+        console.log(data.results[i]);
+        var li = document.createElement('li');
+        var a = document.createElement("a");
+        var img = document.createElement("img");
+        a.setAttribute("href", data.results[i].streamingInfo.netflix.us.link);
+        img.setAttribute("src", data.results[i].posterURLs.original);
+        a.appendChild(img)
+        li.appendChild(a);
+        contentListEl.appendChild(li);
+    }
 }
 
 
-// frontPage.classList.add("hidden");
-resultPage.classList.add("hidden");
+frontPage.classList.add("hidden");
+// resultPage.classList.add("hidden");
 submitBtn.on('submit', gettingInput);
 reloadBtn.on('click', function () {
     location.reload();
