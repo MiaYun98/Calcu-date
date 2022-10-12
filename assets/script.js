@@ -72,11 +72,11 @@ function printingresult(data) {
     var headerEl = document.querySelector(".header"); 
     headerEl.textContent = (data.sname + " " + data.fname);
     var percentageEl = document.querySelector(".percentage");
-    percentageEl.textContent = (data.percentage);
+    percentageEl.textContent = ("Percentage match: data.percentage);
     resultnum = data.percentage;
     var resultSenEl = document.querySelector(".result-sentnece");
     //its not working
-    resultSenEl.textContent = (data.result);
+    resultSenEl.textContent = ("Result:" + data.result);
 }
 
 function gettingRecommendation(event) {
@@ -131,7 +131,6 @@ function gettingMovie() {
 function contentMovie(data) {
     console.log(data)
 }
-
 
 // frontPage.classList.add("hidden");
 resultPage.classList.add("hidden");
