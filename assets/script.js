@@ -23,7 +23,8 @@ var tabBtn = $('.tabBtn');
 var yourNameEl = document.querySelector(".form-input-your");
 var crushNameEl = document.querySelector(".form-input-crush");
 var frontPage = document.querySelector(".front-page");
-var resultPage = document.querySelector(".result-page")
+var resultPage = document.querySelector(".result-page");
+var contentEl = document.querySelector(".content");
 var resultNum = "";
 var recommendGenre = "";
 
@@ -62,7 +63,7 @@ function getCalculate(yourName, crushName) {
             }   
         })
         .catch(function (error) {
-            alert('unable to connect to the data')
+            alert('unable to connect to the data');
         })
 }
 
@@ -72,11 +73,10 @@ function printingresult(data) {
     var headerEl = document.querySelector(".header"); 
     headerEl.textContent = (data.sname + " " + data.fname);
     var percentageEl = document.querySelector(".percentage");
-    percentageEl.textContent = ("Percentage match: data.percentage);
-    resultnum = data.percentage;
+    percentageEl.textContent = ("Percentage match:  " + data.percentage);
+    resultNum = data.percentage;
     var resultSenEl = document.querySelector(".result-sentnece");
-    //its not working
-    resultSenEl.textContent = ("Result:" + data.result);
+    resultSenEl.textContent = ("Result: " + data.result);
 }
 
 function gettingRecommendation(event) {
