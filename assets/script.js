@@ -28,23 +28,16 @@ console.log("hello")
 //     .then(response => console.log(response))
 //     .catch(err => console.error(err));
 
-// Love calculator
-// const options = {
-// 	method: 'GET',
-// 	headers: {
-// 		'X-RapidAPI-Key': '8ffca2429dmsh13d60be90c10c46p18d30bjsn600828036fb6',
-// 		'X-RapidAPI-Host': 'love-calculator.p.rapidapi.com'
-// 	}
-// };
-
-// fetch('https://love-calculator.p.rapidapi.com/getPercentage?sname=Alice&fname=John', options)
-// 	.then(response => response.json())
-// 	.then(response => console.log(response))
-// 	.catch(err => console.error(err));
+// variable setting 
 var submitBtn = $("#search-form"); 
+var reloadBtn = $("#btn-front")
 var yourNameEl = document.querySelector(".form-input-your");
 var crushNameEl = document.querySelector(".form-input-crush");
+var frontPage = document.querySelector(".front-page");
+var resultPage = document.querySelector(".result-page")
+var response = "";
 
+// getting the input value of the text area
 function gettingInput(event) {
     event.preventDefault();
     var yourName = yourNameEl.value.trim();
@@ -54,10 +47,12 @@ function gettingInput(event) {
         return;
     }
 
+    // hidding the first page
+    frontPage.classList.add("hidden")
     getCalculate(yourName, crushName)
-    console.log('click');
 }
 
+// getting an answer for the percentage and the sentence
 function getCalculate(yourName, crushName) {
     const options = {
         method: 'GET',
@@ -68,9 +63,34 @@ function getCalculate(yourName, crushName) {
     };
 
     fetch('https://love-calculator.p.rapidapi.com/getPercentage?sname=' + yourName + "&fname=" + crushName , options)
-        .then(response => response.json())
-        .then(response => console.log(response))
-        .catch(err => console.error(err));  
+        .then(function (response) {
+            if (response.ok) {
+                response.json()
+                .then(function (data) {
+                    printingresult(data);
+                });
+            }   
+        })
+        .catch(function (error) {
+            alert('unable to connect to the data')
+        })
 }
 
+function printingresult(data) {
+    console.log(data);
+    resultPage.classList.remove("hidden")
+    var headerEl = document.querySelector(".header"); 
+    headerEl.textContent = (data.fname + " " + data.sname);
+    var percentageEl = document.querySelector(".percentage");
+    percentageEl.textContent = (data.percentage);
+    var resultSenEl = document.querySelector(".result-sentnece");
+    resultSenEl.textContent = (data.result);
+}
+
+
+
+resultPage.classList.add("hidden")
 submitBtn.on('submit', gettingInput);
+reloadBtn.on('click', function () {
+    location.reload();
+});
