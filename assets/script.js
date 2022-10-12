@@ -25,6 +25,7 @@ var crushNameEl = document.querySelector(".form-input-crush");
 var frontPage = document.querySelector(".front-page");
 var resultPage = document.querySelector(".result-page")
 var resultNum = "";
+var recommendGenre = "";
 
 // getting the input value of the text area
 function gettingInput(event) {
@@ -71,38 +72,64 @@ function printingresult(data) {
     var headerEl = document.querySelector(".header"); 
     headerEl.textContent = (data.sname + " " + data.fname);
     var percentageEl = document.querySelector(".percentage");
-    percentageEl.textContent = (data.percentage);
+    percentageEl.textContent = ("Percentage match: data.percentage);
     resultnum = data.percentage;
     var resultSenEl = document.querySelector(".result-sentnece");
     //its not working
-    resultSenEl.textContent = (data.result);
-    
+    resultSenEl.textContent = ("Result:" + data.result);
 }
 
 function gettingRecommendation(event) {
     var searching = event.target.getAttribute('data-info');
     if (searching === 'movie') {
+        console.log('print')
         gettingMovie();
     } else if (searching === 'quote') {
-        gettingMovie();
+        gettingquote();
     } else if (searching === 'activity') {
-        gettingMovie();
+        gettingActivity();
     }
 }
 
 function gettingMovie() {
-    const options = {
-    method: 'GET',
-    headers: {
-        'X-RapidAPI-Key': '8ffca2429dmsh13d60be90c10c46p18d30bjsn600828036fb6',
-        'X-RapidAPI-Host': 'watchmode.p.rapidapi.com'
+    if (resultNum === 0) {
+        recommendGenre = 27;
+    } else if (resultNum <= 25 && resultNum > 0) {
+        recommendGenre = 53;
+    } else if (resultNum <= 50 && resultNum > 25) {
+        recommendGenre = 10751;
+    } else if (resultNum <= 75 && resultNum > 50) {
+        recommendGenre = 35;
+    } else if (resultNum < 100 && resultNum >75) {
+        recommendGenre = 10749;
+    } else if (resultNum === 100) {
+        recommendGenre = 28;
     }
-    };
 
-    fetch('https://watchmode.p.rapidapi.com/releases?start_date=20220301&end_date=20220312&limit=250', options)
-        .then(response => response.json())
-        .then(response => console.log(response))
-        .catch(err => console.error(err));
+    const options = {
+        method: 'GET',
+        headers: {
+            'X-RapidAPI-Key': '8ffca2429dmsh13d60be90c10c46p18d30bjsn600828036fb6',
+            'X-RapidAPI-Host': 'streaming-availability.p.rapidapi.com'
+        }
+    };
+    
+    fetch('https://streaming-availability.p.rapidapi.com/search/basic?country=us&service=netflix&type=movie&genre=' + recommendGenre + '&page=1&output_language=en&language=en', options)
+    .then(function (response) {
+        if (response.ok) {
+            response.json()
+            .then(function (data) {
+                contentMovie(data);
+            });
+        }   
+    })
+    .catch(function (error) {
+        alert('unable to connect to the data')
+    })
+}
+
+function contentMovie(data) {
+    console.log(data)
 }
 
 //frontPage.classList.add("hidden");
