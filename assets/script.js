@@ -132,7 +132,7 @@ function contentMovie(data) {
     console.log(data)
 }
 
-// frontPage.classList.add("hidden");
+//frontPage.classList.add("hidden");
 resultPage.classList.add("hidden");
 submitBtn.on('submit', gettingInput);
 reloadBtn.on('click', function () {
