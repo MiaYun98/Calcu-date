@@ -70,11 +70,11 @@ function printingresult(data) {
     console.log(data);
     resultPage.classList.remove("hidden")
     var headerEl = document.querySelector(".header"); 
-    headerEl.textContent = (data.sname + " " + data.fname);
+    headerEl.textContent = (data.sname + " and " + data.fname);
     var percentageEl = document.querySelector(".percentage");
-    percentageEl.textContent = ("Percentage match: data.percentage);
+    percentageEl.textContent = (data.percentage + "%");
     resultnum = data.percentage;
-    var resultSenEl = document.querySelector(".result-sentnece");
+    var resultSenEl = document.querySelector(".result-sentence");
     //its not working
     resultSenEl.textContent = ("Result:" + data.result);
 }
@@ -132,7 +132,8 @@ function contentMovie(data) {
     console.log(data)
 }
 
-//frontPage.classList.add("hidden");
+
+// frontPage.classList.add("hidden");
 resultPage.classList.add("hidden");
 submitBtn.on('submit', gettingInput);
 reloadBtn.on('click', function () {
