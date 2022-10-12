@@ -1,21 +1,3 @@
-console.log("hello")
-
-// quote
-// const options = {
-// 	method: 'GET',
-// 	headers: {
-// 		'X-RapidAPI-Key': '8ffca2429dmsh13d60be90c10c46p18d30bjsn600828036fb6',
-// 		'X-RapidAPI-Host': 'love-quote.p.rapidapi.com'
-// 	}
-// };
-
-// fetch('https://love-quote.p.rapidapi.com/lovequote', options)
-// 	.then(response => response.json())
-// 	.then(response => console.log(response))
-// 	.catch(err => console.error(err));
-
-
-
 // variable setting 
 var submitBtn = $("#search-form"); 
 var reloadBtn = $("#btn-front");
@@ -86,7 +68,7 @@ function gettingRecommendation(event) {
         console.log('print')
         gettingMovie();
     } else if (searching === 'quote') {
-        gettingquote();
+        gettingQuote();
     } else if (searching === 'activity') {
         gettingActivity();
     }
@@ -130,9 +112,8 @@ function gettingMovie() {
 }
 
 function contentMovie(data) {
-    console.log(data);
+    contentListEl.textContent = "";
     for (var i = 0; i < data.results.length; i++ ) {
-        console.log(data.results[i]);
         var li = document.createElement('li');
         var a = document.createElement("a");
         var img = document.createElement("img");
@@ -143,6 +124,43 @@ function contentMovie(data) {
         contentListEl.appendChild(li);
     }
 }
+
+
+function gettingQuote() {
+    const options = {
+    	method: 'GET',
+    	headers: {
+    		'X-RapidAPI-Key': '8ffca2429dmsh13d60be90c10c46p18d30bjsn600828036fb6',
+    		'X-RapidAPI-Host': 'love-quote.p.rapidapi.com'
+    	}
+    };
+
+    fetch('https://love-quote.p.rapidapi.com/lovequote', options)
+        .then(function (response) {
+            if (response.ok) {
+                response.json()
+                .then(function (data) {
+                    printingquote(data);
+                });
+            }   
+        })
+        .catch(function (error) {
+            alert('unable to connect to the data')
+        })
+}
+
+function printingquote(data) {
+    contentListEl.textContent = "";
+    var li = document.createElement('li');
+    var h4 = document.createElement('h4');
+    h4.textContent = (data.title);
+    var p = document.createElement('p');
+    p.textContent = (data.author);
+    li.appendChild(p);
+    li.appendChild(h4);
+    contentListEl.appendChild(li);
+}
+
 
 
 frontPage.classList.add("hidden");
