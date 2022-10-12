@@ -11,18 +11,28 @@
     <!-- css style sheet -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link rel="stylesheet" href="./assets/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
     </head>
     <body>
+      
       <section class = "front-page">
         <header>
-          <h1>Calcudate</h1>
-          <h4>sub</h4>
+          <span>
+            <!-- <h1>Calcudate</h1> -->
+            <!-- <h1 style="font-style: oblique">Calcudate</h1> -->
+            <h1 class = "newfont">Calcudate</h1>
+      </span>
+          <!-- <span>
+            <h1 style="font-weight: lighter">Calcudate</h1>
+         </span> -->
+          <h4 class = "newfont">Let Fate Decide!</h4>
         </header>
         <form id="search-form">
           <input type="text" class="form-input-your" placeholder = "Your Name">
           <input type="text" class="form-input-crush" placeholder = "Crush-name">
           <button type="submit" class="btn-floating btn-large waves-effect waves-light red pulse" id = "button">❤️</button>
         </form>
+        <div class="heart-shape"></div>
       </section>
       <section class = "result-page">
         <header>

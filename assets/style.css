@@ -6,7 +6,7 @@
 
 body {
     margin: 2.5%;
-    font-family: 'Great Vibes', cursive;
+    background-color: rgb(240, 183, 217);
 }
 
 input {
@@ -31,6 +31,52 @@ button {
     display: none;
 }
 
+h1 {
+    color: rgb(233, 35, 35);
+    font-size: 125px;
+}
+
+h4 {
+    color: rgb(233, 35, 35);
+    font-size: 50px; 
+}
+
+.heart-shape{
+  position: relative;
+  width: 200px;
+  height: 200px;
+  -webkit-transform: rotate(45deg);
+  -moz-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  -o-transform: rotate(45deg);
+  transform: rotate(45deg);
+  background-color: rgb(185, 27, 16);
+}
+.heart-shape:before,
+.heart-shape:after{
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  content: '';
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -o-border-radius: 50%;
+  border-radius: 50%;
+  background-color: rgba(185, 27, 16);
+}
+
+.heart-shape:before{
+  bottom: 0px;
+  left: -100px;
+}
+.heart-shape:after{
+  top: -100px;
+  right: 0px;
+}
+
+.newfont {
+  font-family: 'Great Vibes', cursive; 
+
 .recommendation {
     display: flex;
 }
@@ -45,7 +91,8 @@ button {
 }
 
 #search-form {
-    padding-top: 10%;
+    margin-top: 5%;
+    font-family: 'Great Vibes', cursive;
     width: 30%;
     margin: auto;
 }
