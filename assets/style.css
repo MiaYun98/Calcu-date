@@ -9,8 +9,6 @@ body {
     font-family: 'Great Vibes', cursive;
 }
 
-
-
 input {
     margin: 1%;
     box-sizing: border-box;
@@ -25,8 +23,25 @@ button {
     text-align: center;
 }
 
+.result-page {
+    text-align: center;
+}
+
 .hidden {
     display: none;
+}
+
+.recommendation {
+    display: flex;
+}
+
+.tabBtn {
+    margin-right: 40px;
+}
+
+.content {
+    border: 5px solid red;
+    height: 200px;
 }
 
 #search-form {
