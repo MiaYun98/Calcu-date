@@ -152,11 +152,17 @@ function printingquote(data) {
     contentListEl.textContent = "";
     var li = document.createElement('li');
     var h4 = document.createElement('h4');
-    h4.textContent = (data.title);
+    console.log(data)
+    if (!data.quote) {
+        h4.textContent = (data.title);
+    } else {
+        h4.textContent = (data.quote);
+    }
+    
     var p = document.createElement('p');
     p.textContent = (data.author);
-    li.appendChild(p);
     li.appendChild(h4);
+    li.appendChild(p);
     contentListEl.appendChild(li);
 }
 
