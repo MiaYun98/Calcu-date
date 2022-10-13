@@ -9,7 +9,7 @@ var resultPage = document.querySelector(".result-page")
 var contentEl = document.querySelector("#content")
 var contentListEl = document.querySelector("#contentList")
 var resultNum = "";
-var recommendGenre = "";
+var movieRecommend = "";
 
 // getting the input value of the text area
 function gettingInput(event) {
@@ -65,7 +65,7 @@ function printingresult(data) {
 function gettingRecommendation(event) {
     var searching = event.target.getAttribute('data-info');
     if (searching === 'movie') {
-        console.log('print')
+        movieCode();
         gettingMovie();
     } else if (searching === 'quote') {
         gettingQuote();
@@ -74,31 +74,35 @@ function gettingRecommendation(event) {
     }
 }
 
+// getting the movie genre according to the percentage
+function movieCode () {
+    console.log(resultnum)
+    if (resultNum === 0) {
+        movieRecommend = '27';
+    } else if (resultNum <= 25) {
+        movieRecommend = '53';
+    } else if (resultNum <= 50) {
+        movieRecommend = '10751';
+    } else if (resultNum <= 75) {
+        movieRecommend = '35';
+    } else if (resultNum < 100) {
+        movieRecommend = '10749';
+    } else if (resultNum === 100) {
+        movieRecommend = '28';
+    }
+}
 // having a recommendation according to the percentage of the match
 function gettingMovie() {
-    if (resultNum === 0) {
-        recommendGenre = 27;
-    } else if (resultNum <= 25 && resultNum > 0) {
-        recommendGenre = 53;
-    } else if (resultNum <= 50 && resultNum > 25) {
-        recommendGenre = 10751;
-    } else if (resultNum <= 75 && resultNum > 50) {
-        recommendGenre = 35;
-    } else if (resultNum < 100 && resultNum > 75) {
-        recommendGenre = 10749;
-    } else if (resultNum === 100) {
-        recommendGenre = 28;
-    }
-
+    console.log(movieRecommend);
     const options = {
         method: 'GET',
         headers: {
             'X-RapidAPI-Key': '8ffca2429dmsh13d60be90c10c46p18d30bjsn600828036fb6',
-            'X-RapidAPI-Host': 'streaming-availability.p.rapidapi.com'
+            'X-RapidAPI-Host': 'advanced-movie-search.p.rapidapi.com'
         }
     };
 
-    fetch('https://streaming-availability.p.rapidapi.com/search/basic?country=us&service=netflix&type=movie&genre=' + recommendGenre + '&page=1&output_language=en&language=en', options)
+    fetch('https://advanced-movie-search.p.rapidapi.com/discover/movie?with_genres='+ movieRecommend +'&page=1', options)
         .then(function (response) {
             if (response.ok) {
                 response.json()
@@ -114,15 +118,16 @@ function gettingMovie() {
 
 // pringint the movie list into the box
 function contentMovie(data) {
+    console.log(data);
     contentListEl.textContent = "";
-    for (var i = 0; i < data.results.length; i++) {
+    for (var i = 0; i < 9; i++) {
         var li = document.createElement('li');
         var a = document.createElement("a");
         var img = document.createElement("img");
         img.setAttribute("class", "movie-img")
-        a.setAttribute("href", data.results[i].streamingInfo.netflix.us.link);
+        a.setAttribute("href", "#");
         a.setAttribute("target", "_blank");
-        img.setAttribute("src", data.results[i].posterURLs.original);
+        img.setAttribute("src", data.results[i].poster_path);
         a.appendChild(img)
         li.appendChild(a);
         contentListEl.appendChild(li);
