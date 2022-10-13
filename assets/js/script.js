@@ -87,13 +87,13 @@ function gettingRecommendation(event) {
     } else if (searching === 'quote') {
         gettingQuote();
     } else if (searching === 'activity') {
+        console.log('clcik')
         gettingActivity();
     }
 }
 
 // getting the movie genre according to the percentage
 function movieCode () {
-    console.log(typeof resultNum)
     if (resultNum === 0) {
         movieRecommend = '27';
     } else if (resultNum > 0 && resultNum < 25) {
@@ -181,7 +181,6 @@ function printingquote(data) {
     contentListEl.textContent = "";
     var li = document.createElement('li');
     var h4 = document.createElement('h4');
-    console.log(data)
     if (!data.quote) {
         h4.textContent = (data.title);
     } else {
@@ -195,7 +194,37 @@ function printingquote(data) {
     contentListEl.appendChild(li);
 }
 
-// frontPage.classList.add("hidden");
+function gettingActivity () {
+    const options = {
+        method: 'GET',
+        headers: {
+            'X-RapidAPI-Key': '8ffca2429dmsh13d60be90c10c46p18d30bjsn600828036fb6',
+            'X-RapidAPI-Host': 'random-recipes.p.rapidapi.com'
+        }
+    };
+    
+    fetch('https://random-recipes.p.rapidapi.com/ai-quotes/1', options)
+        .then(response => response.json())
+        .then(function (data) {
+            console.log(data);
+            contentListEl.textContent = "";
+            var img = document.createElement('img');
+            var li = document.createElement('li');
+            var p = document.createElement('p');
+            var h3 = document.createElement('h3');
+            console.log(data[0].image)
+            img.setAttribute("src", data[0].image);
+            img.setAttribute("class", "food-image");
+            h3.textContent = (data[0].title);
+            p.textContent = (data[0].ingredients);
+            li.appendChild(img);
+            li.appendChild(p);
+            contentListEl.appendChild(h3)
+            contentListEl.appendChild(li);
+        })
+        .catch(err => console.error(err));
+}
+
 resultPage.classList.add("hidden");
 $("#button").on('mousedown', function () {
     heartbeat.play();
