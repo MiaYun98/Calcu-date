@@ -5,9 +5,10 @@ var tabBtn = $('.tabBtn');
 var yourNameEl = document.querySelector(".form-input-your");
 var crushNameEl = document.querySelector(".form-input-crush");
 var frontPage = document.querySelector(".front-page");
-var resultPage = document.querySelector(".result-page")
-var contentEl = document.querySelector("#content")
-var contentListEl = document.querySelector("#contentList")
+var resultPage = document.querySelector(".result-page");
+var contentEl = document.querySelector("#content");
+var contentListEl = document.querySelector("#contentList");
+var contentPageEl = document.querySelector(".content-page");
 var resultNum = "";
 var movieRecommend = "";
 
@@ -70,7 +71,7 @@ function printingresult(data) {
     resultNum = data.percentage;
     var resultSenEl = document.querySelector(".result-sentence");
     resultSenEl.textContent = ("Result: " + data.result);
-
+    contentPageEl.classList.add('hidden');
     if (resultNum < 50) { 
         myMusic.play();
     } else {
@@ -90,6 +91,7 @@ function gettingRecommendation(event) {
         console.log('clcik')
         gettingActivity();
     }
+    contentPageEl.classList.remove('hidden');
 }
 
 // getting the movie genre according to the percentage
@@ -114,11 +116,11 @@ function gettingMovie() {
         method: 'GET',
         headers: {
             'X-RapidAPI-Key': '8ffca2429dmsh13d60be90c10c46p18d30bjsn600828036fb6',
-            'X-RapidAPI-Host': 'advanced-movie-search.p.rapidapi.com'
+            'X-RapidAPI-Host': 'streaming-availability.p.rapidapi.com'
         }
     };
-
-    fetch('https://advanced-movie-search.p.rapidapi.com/discover/movie?with_genres='+ movieRecommend +'&page=1', options)
+    
+    fetch('https://streaming-availability.p.rapidapi.com/search/basic?country=us&service=netflix&type=movie&genre=' + movieRecommend + '&page=1&output_language=en&language=en', options)
         .then(function (response) {
             if (response.ok) {
                 response.json()
@@ -134,18 +136,19 @@ function gettingMovie() {
 
 // pringint the movie list into the box
 function contentMovie(data) {
+    console.log(data.results)
     contentListEl.textContent = "";
     var h3 = document.createElement('h3');
     contentListEl.appendChild(h3);
     h3.textContent = ("Based on your percentage match, here are some date movie recommendations: ");
-    for (var i = 0; i < 9; i++) {
+    for (var i = 0; i < data.results.length; i++) {
         var li = document.createElement('li');
         var a = document.createElement("a");
         var img = document.createElement("img");
         img.setAttribute("class", "movie-img")
-        a.setAttribute("href", "https://www.google.com/");
+        a.setAttribute("href", data.results[i].streamingInfo.netflix.us.link);
         a.setAttribute("target", "_blank");
-        img.setAttribute("src", data.results[i].poster_path);
+        img.setAttribute("src", data.results[i].posterURLs.original);
         a.appendChild(img)
         li.appendChild(a);
         contentListEl.appendChild(li);
