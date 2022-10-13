@@ -59,10 +59,12 @@ function printingresult(data) {
     resultNum = data.percentage;
     var resultSenEl = document.querySelector(".result-sentence");
     resultSenEl.textContent = ("Result: " + data.result);
+    contentEl.classList.add("hidden");
 }
 
 // clicks for the tab button on the second page
 function gettingRecommendation(event) {
+    contentEl.classList.remove("hidden");
     var searching = event.target.getAttribute('data-info');
     if (searching === 'movie') {
         movieCode();
@@ -75,7 +77,7 @@ function gettingRecommendation(event) {
 }
 
 // getting the movie genre according to the percentage
-function movieCode () {
+function movieCode() {
     console.log(typeof resultNum)
     if (resultNum === 0) {
         movieRecommend = '27';
@@ -101,7 +103,7 @@ function gettingMovie() {
         }
     };
 
-    fetch('https://advanced-movie-search.p.rapidapi.com/discover/movie?with_genres='+ movieRecommend +'&page=1', options)
+    fetch('https://advanced-movie-search.p.rapidapi.com/discover/movie?with_genres=' + movieRecommend + '&page=1', options)
         .then(function (response) {
             if (response.ok) {
                 response.json()
@@ -118,6 +120,9 @@ function gettingMovie() {
 // pringint the movie list into the box
 function contentMovie(data) {
     contentListEl.textContent = "";
+    var h3 = document.createElement('h3');
+    contentListEl.appendChild(h3);
+    h3.textContent = ("Based on your percentage match, here are some date movie recommendations: ");
     for (var i = 0; i < 9; i++) {
         var li = document.createElement('li');
         var a = document.createElement("a");
@@ -130,6 +135,7 @@ function contentMovie(data) {
         li.appendChild(a);
         contentListEl.appendChild(li);
     }
+
 }
 
 // rendom quote generating API
@@ -168,10 +174,10 @@ function printingquote(data) {
         h4.textContent = (data.quote);
     }
 
-    var p = document.createElement('p');
-    p.textContent = (data.author);
+    var h5 = document.createElement('h5');
+    h5.textContent = (data.author);
     li.appendChild(h4);
-    li.appendChild(p);
+    li.appendChild(h5);
     contentListEl.appendChild(li);
 }
 

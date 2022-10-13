@@ -112,9 +112,11 @@ h4 {
     margin-right: 40px;
 }
 
-.content {
-    border: 5px solid red;
-    height: 200px;
+#content {
+    border: 5px solid rgb(233, 151, 151);
+    height: fit-content;
+    background-color: lightpink;
+    padding: 2.5%;
 }
 
 #search-form {
