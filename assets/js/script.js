@@ -56,7 +56,7 @@ function printingresult(data) {
     headerEl.textContent = (data.sname.charAt(0).toUpperCase() + data.sname.slice(1) + "    &    " + data.fname.charAt(0).toUpperCase() + data.fname.slice(1));
     var percentageEl = document.querySelector(".percentage");
     percentageEl.textContent = (data.percentage + "%");
-    resultnum = data.percentage;
+    resultNum = data.percentage;
     var resultSenEl = document.querySelector(".result-sentence");
     resultSenEl.textContent = ("Result: " + data.result);
 }
@@ -76,16 +76,16 @@ function gettingRecommendation(event) {
 
 // getting the movie genre according to the percentage
 function movieCode () {
-    console.log(resultnum)
+    console.log(typeof resultNum)
     if (resultNum === 0) {
         movieRecommend = '27';
-    } else if (resultNum <= 25) {
+    } else if (resultNum > 0 && resultNum < 25) {
         movieRecommend = '53';
-    } else if (resultNum <= 50) {
+    } else if (resultNum > 25 && resultNum < 50) {
         movieRecommend = '10751';
-    } else if (resultNum <= 75) {
+    } else if (resultNum > 50 && resultNum < 75) {
         movieRecommend = '35';
-    } else if (resultNum < 100) {
+    } else if (resultNum > 75 && resultNum < 100) {
         movieRecommend = '10749';
     } else if (resultNum === 100) {
         movieRecommend = '28';
@@ -93,7 +93,6 @@ function movieCode () {
 }
 // having a recommendation according to the percentage of the match
 function gettingMovie() {
-    console.log(movieRecommend);
     const options = {
         method: 'GET',
         headers: {
@@ -118,7 +117,6 @@ function gettingMovie() {
 
 // pringint the movie list into the box
 function contentMovie(data) {
-    console.log(data);
     contentListEl.textContent = "";
     for (var i = 0; i < 9; i++) {
         var li = document.createElement('li');
