@@ -19,6 +19,11 @@ h1 {
     font-size: 125px;
 }
 
+p {
+    font-size: 30px;
+    font-family: 'Fuzzy Bubbles', cursive;
+}
+
 h2,
 h3 {
     color: rgb(233, 35, 35);
@@ -110,6 +115,11 @@ h4 {
 
 .tabBtn {
     margin-right: 40px;
+}
+
+.food-image {
+    height:300px;
+    width: 300px;;
 }
 
 #content {
