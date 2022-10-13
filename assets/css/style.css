@@ -113,10 +113,9 @@ h4 {
 }
 
 #content {
-    border: 5px solid rgb(233, 151, 151);
     height: fit-content;
-    background-color: lightpink;
     padding: 2.5%;
+    background-color: lightpink;
 }
 
 #search-form {
@@ -124,4 +123,9 @@ h4 {
     font-family: 'Great Vibes', cursive;
     width: 30%;
     margin: auto;
+}
+
+::placeholder {
+    color: black; 
+    opacity: 0.5;
 }

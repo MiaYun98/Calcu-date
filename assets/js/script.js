@@ -11,6 +11,17 @@ var contentListEl = document.querySelector("#contentList")
 var resultNum = "";
 var movieRecommend = "";
 
+//sound 
+var myMusic = new Audio();
+myMusic.src = "./assets/image/soundeffect.mp3";
+
+var heartbeat = new Audio();
+heartbeat.src = "./assets/image/heartbeat-01.mp3"
+
+var happyMusic = new Audio();
+happyMusic.src = "./assets/image/clap.mp3"
+
+
 // getting the input value of the text area
 function gettingInput(event) {
     event.preventDefault();
@@ -51,7 +62,7 @@ function getCalculate(yourName, crushName) {
 
 // result of the love - calculator
 function printingresult(data) {
-    resultPage.classList.remove("hidden")
+    resultPage.classList.remove("hidden");
     var headerEl = document.querySelector(".header");
     headerEl.textContent = (data.sname.charAt(0).toUpperCase() + data.sname.slice(1) + "    &    " + data.fname.charAt(0).toUpperCase() + data.fname.slice(1));
     var percentageEl = document.querySelector(".percentage");
@@ -59,12 +70,16 @@ function printingresult(data) {
     resultNum = data.percentage;
     var resultSenEl = document.querySelector(".result-sentence");
     resultSenEl.textContent = ("Result: " + data.result);
-    contentEl.classList.add("hidden");
+
+    if (resultNum < 50) { 
+        myMusic.play();
+    } else {
+        happyMusic.play();
+    }
 }
 
 // clicks for the tab button on the second page
 function gettingRecommendation(event) {
-    contentEl.classList.remove("hidden");
     var searching = event.target.getAttribute('data-info');
     if (searching === 'movie') {
         movieCode();
@@ -77,7 +92,7 @@ function gettingRecommendation(event) {
 }
 
 // getting the movie genre according to the percentage
-function movieCode() {
+function movieCode () {
     console.log(typeof resultNum)
     if (resultNum === 0) {
         movieRecommend = '27';
@@ -103,7 +118,7 @@ function gettingMovie() {
         }
     };
 
-    fetch('https://advanced-movie-search.p.rapidapi.com/discover/movie?with_genres=' + movieRecommend + '&page=1', options)
+    fetch('https://advanced-movie-search.p.rapidapi.com/discover/movie?with_genres='+ movieRecommend +'&page=1', options)
         .then(function (response) {
             if (response.ok) {
                 response.json()
@@ -128,14 +143,13 @@ function contentMovie(data) {
         var a = document.createElement("a");
         var img = document.createElement("img");
         img.setAttribute("class", "movie-img")
-        a.setAttribute("href", "#");
+        a.setAttribute("href", "https://www.google.com/");
         a.setAttribute("target", "_blank");
         img.setAttribute("src", data.results[i].poster_path);
         a.appendChild(img)
         li.appendChild(a);
         contentListEl.appendChild(li);
     }
-
 }
 
 // rendom quote generating API
@@ -183,9 +197,16 @@ function printingquote(data) {
 
 // frontPage.classList.add("hidden");
 resultPage.classList.add("hidden");
-submitBtn.on('submit', gettingInput);
+$("#button").on('mousedown', function () {
+    heartbeat.play();
+});
+$("#button").on('mouseup', function() {
+    heartbeat.pause();
+    heartbeat.currentTime = 0;
+});
 reloadBtn.on('click', function () {
     location.reload();
 });
+submitBtn.on('submit', gettingInput);
 // for the tab
 tabBtn.on('click', gettingRecommendation)
