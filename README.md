@@ -69,16 +69,19 @@ For entertainment purposes and movie searches
 
 ## App Screenshot
 
+![](assets/image/Untitled.jpg)
 
 ## Live Website
 
+![](assets/image/ezgif.com-gif-maker.gif)
+https://miayun98.github.io/Calcu-date/
 
 ## Contact
 
-* Bryan Gholipour: 
+* Bryan Gholipour: https://github.com/bryangholipour 
 
-* Eillen Lu: 
+* Eillen Lu: https://github.com/Eile8 
 
-* Sangmi Yun: 
+* Sangmi Yun: https://github.com/MiaYun98 
 
-* Tiffany Marko: 
+* Tiffany Marko: https://github.com/Tiffany-Marko
