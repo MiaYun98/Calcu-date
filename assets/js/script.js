@@ -15,13 +15,14 @@ var movieRecommend = "";
 //sound 
 var myMusic = new Audio();
 myMusic.src = "./assets/image/soundeffect.mp3";
+myMusic.volume = 0.2;
 
 var heartbeat = new Audio();
 heartbeat.src = "./assets/image/heartbeat-01.mp3"
 
 var happyMusic = new Audio();
 happyMusic.src = "./assets/image/clap.mp3"
-
+happyMusic.volume = 0.2;
 
 // getting the input value of the text area
 function gettingInput(event) {
