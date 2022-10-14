@@ -241,5 +241,6 @@ reloadBtn.on('click', function () {
     location.reload();
 });
 submitBtn.on('submit', gettingInput);
+
 // for the tab
 tabBtn.on('click', gettingRecommendation)
