@@ -20,7 +20,7 @@ h1 {
 }
 
 p {
-    font-size: 30px;
+    font-size: 50px;
     font-family: 'Fuzzy Bubbles', cursive;
 }
 
@@ -51,11 +51,14 @@ h4 {
 }
 
 .movie-img {
-    height: 500px;
+    height: 300px;
     display: flex;
     float: left;
-    width: 33.33%;
+    width: 20%;
     padding: 5px;
+    border: 2px solid rgb(185, 27, 16);
+    margin: 2%;
+    filter: grayscale(30)
 }
 
 .front-page {
@@ -138,4 +141,9 @@ h4 {
 ::placeholder {
     color: black; 
     opacity: 0.5;
+}
+
+/* effect */
+.movie-img:hover {
+    filter: grayscale(0);
 }
