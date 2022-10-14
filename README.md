@@ -52,7 +52,7 @@ GIVEN I visit the app
 WHEN I am on the homepage
 THEN I am greeted with the search bar
 WHEN I search our names
-THEN our love comparability will display
+THEN our love compatibility will display
 WHEN I have found a good love match
 THEN I can search for a streaming movie for a first date.
 WHEN I have found a poor match
